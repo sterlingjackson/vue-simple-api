@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>API Documentation</title>
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../src/css/vue-simple-api.css">
+  </head>
+
+  <body>
+    <div style="font-size: 18px !important; line-height: 25px; max-width: 700px; padding: 15px">
+      <div class="content-heading" style="text-align: left; font-size: 45px; line-height: 55px">API Documentation</div>
+      
+      <div id="app">
+        <div class="content-frame">
+          <div class="section-heading">VERSION 1.0</div>
+          <div class="panel">
+            <pre>{{basePath}}</pre>
+          </div>
+          
+          <div v-if="!endpoints">Couldn't load the specified API resources.</div>
+          <div v-else style="width: 100%">
+            <div v-for="row in endpoints">
+              <div class="section-heading">{{row.endpoint}} <span style="border-radius: 2px; padding: 3px 10px 3px 10px" v-bind:class="'type-' + row.protocol.toLowerCase()">{{row.protocol}}</span></div>
+              <div class="section-subheading">{{row.description}}</div>
+              <div class="panel">
+                <pre>{{JSON.stringify(row.payload, null, 2)}}</pre>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <script src="../src/js/api-documentation.js"></script>
+    <script src="../src/js/vue-simple-api.js"></script>
+  </body>
+</html>
